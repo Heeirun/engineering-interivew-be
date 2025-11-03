@@ -1,0 +1,54 @@
+{
+  "name": "engineering-interivew-be",
+  "version": "1.0.0",
+  "description": "Thanks for taking the time to complete the Every.io code challenge. Don't worry, it's not too hard, and please do not spend more than 3-4 hours. We know you have lots of these to do, and it can be very time consuming.",
+  "main": "dist/src/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/src/server.js",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "npm run build && npx prisma db seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Heeirun/engineering-interivew-be.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Heeirun/engineering-interivew-be/issues"
+  },
+  "homepage": "https://github.com/Heeirun/engineering-interivew-be#readme",
+  "dependencies": {
+    "@fastify/rate-limit": "^10.3.0",
+    "@prisma/client": "^6.18.0",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.1",
+    "pino": "^10.1.0",
+    "pino-pretty": "^13.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.2",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "@vitest/coverage-v8": "^4.0.6",
+    "eslint": "^9.39.0",
+    "prettier": "^3.6.2",
+    "prisma": "^6.18.0",
+    "tsx": "^4.8.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.6"
+  },
+  "prisma": {
+    "seed": "node dist/prisma/seed.js"
+  }
+}

@@ -3,13 +3,9 @@ import { prisma } from '../utils/database';
 import { UnauthorizedError } from '../utils/errors';
 import { AuthenticatedRequest } from '../types';
 
-const UUID_REGEX =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-export async function authMiddleware(
-  request: FastifyRequest,
-  _reply: FastifyReply,
-): Promise<void> {
+export async function authMiddleware(request: FastifyRequest, _reply: FastifyReply): Promise<void> {
   // Extract userId from header or query parameter
   let userId = request.headers['x-user-id'] as string | undefined;
 
@@ -20,7 +16,9 @@ export async function authMiddleware(
   }
 
   if (!userId) {
-    throw new UnauthorizedError('Missing user identifier. Provide x-user-id header or userId query parameter.');
+    throw new UnauthorizedError(
+      'Missing user identifier. Provide x-user-id header or userId query parameter.',
+    );
   }
 
   // Validate UUID format

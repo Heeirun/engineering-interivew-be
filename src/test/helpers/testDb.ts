@@ -28,7 +28,10 @@ export async function disconnectDatabase() {
 /**
  * Create a test user
  */
-export async function createTestUser(email: string = 'test@example.com', name: string = 'Test User') {
+export async function createTestUser(
+  email: string = 'test@example.com',
+  name: string = 'Test User',
+) {
   return testDb.user.create({
     data: {
       email,

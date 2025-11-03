@@ -105,15 +105,9 @@ describe('Task Validators', () => {
     const validStatuses = ['TODO', 'IN_PROGRESS', 'DONE', 'ARCHIVED'];
 
     it('should have consistent status enum across all schemas', () => {
-      expect(createTaskSchema.body.properties.status.enum).toEqual(
-        validStatuses,
-      );
-      expect(updateTaskSchema.body.properties.status.enum).toEqual(
-        validStatuses,
-      );
-      expect(listTasksSchema.querystring.properties.status.enum).toEqual(
-        validStatuses,
-      );
+      expect(createTaskSchema.body.properties.status.enum).toEqual(validStatuses);
+      expect(updateTaskSchema.body.properties.status.enum).toEqual(validStatuses);
+      expect(listTasksSchema.querystring.properties.status.enum).toEqual(validStatuses);
     });
 
     it('should contain all required task statuses', () => {
@@ -127,8 +121,7 @@ describe('Task Validators', () => {
   });
 
   describe('UUID Pattern', () => {
-    const uuidPattern =
-      '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$';
+    const uuidPattern = '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$';
 
     it('should use consistent UUID pattern across schemas', () => {
       expect(updateTaskSchema.params.properties.id.pattern).toBe(uuidPattern);

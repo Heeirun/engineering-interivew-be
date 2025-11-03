@@ -140,9 +140,7 @@ describe('Task API Integration Tests', () => {
 
       // Create tasks for user2
       await testDb.task.createMany({
-        data: [
-          { title: 'User2 Task', status: TaskStatus.TODO, userId: testUser2Id },
-        ],
+        data: [{ title: 'User2 Task', status: TaskStatus.TODO, userId: testUser2Id }],
       });
     });
 
@@ -159,7 +157,9 @@ describe('Task API Integration Tests', () => {
       const body = JSON.parse(response.body);
       expect(body.success).toBe(true);
       expect(body.data).toHaveLength(4);
-      expect(body.data.every((task: any) => task.userId === testUser1Id)).toBe(true);
+      expect(
+        body.data.every((task: { userId: string }) => task.userId === testUser1Id),
+      ).toBe(true);
     });
 
     it('should filter tasks by status', async () => {
@@ -243,7 +243,7 @@ describe('Task API Integration Tests', () => {
       expect(body.data.title).toBe('Test Task');
     });
 
-    it('should return 403 when accessing another user\'s task', async () => {
+    it("should return 403 when accessing another user's task", async () => {
       const response = await app.inject({
         method: 'GET',
         url: `/api/tasks/${otherUserTaskId}`,
@@ -369,7 +369,7 @@ describe('Task API Integration Tests', () => {
       expect(body.data.status).toBe('DONE');
     });
 
-    it('should return 403 when updating another user\'s task', async () => {
+    it("should return 403 when updating another user's task", async () => {
       const response = await app.inject({
         method: 'PATCH',
         url: `/api/tasks/${otherUserTaskId}`,
@@ -494,7 +494,7 @@ describe('Task API Integration Tests', () => {
       expect(deletedTask).toBeNull();
     });
 
-    it('should return 403 when deleting another user\'s task', async () => {
+    it("should return 403 when deleting another user's task", async () => {
       const response = await app.inject({
         method: 'DELETE',
         url: `/api/tasks/${otherUserTaskId}`,

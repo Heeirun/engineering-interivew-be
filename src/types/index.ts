@@ -26,4 +26,8 @@ export interface TaskFilters {
   status?: TaskStatus;
 }
 
+export interface TaskQueryString {
+  status?: TaskStatus;
+}
+
 export { TaskStatus };

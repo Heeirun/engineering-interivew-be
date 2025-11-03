@@ -1,7 +1,13 @@
 import { FastifyInstance } from 'fastify';
 import { taskService } from '../services/task.service';
 import { authMiddleware } from '../middlewares/auth';
-import { AuthenticatedRequest, CreateTaskBody, UpdateTaskBody, TaskFilters } from '../types';
+import {
+  AuthenticatedRequest,
+  CreateTaskBody,
+  UpdateTaskBody,
+  TaskFilters,
+  TaskQueryString,
+} from '../types';
 import {
   createTaskSchema,
   updateTaskSchema,
@@ -20,8 +26,9 @@ export async function taskRoutes(fastify: FastifyInstance) {
       schema: listTasksSchema,
     },
     async (request: AuthenticatedRequest, reply) => {
+      const query = request.query as TaskQueryString;
       const filters: TaskFilters = {
-        status: (request.query as any).status,
+        status: query.status,
       };
 
       const tasks = await taskService.getTasks(request.userId!, filters);

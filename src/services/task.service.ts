@@ -27,11 +27,7 @@ export class TaskService {
     return taskRepository.create(userId, data);
   }
 
-  async updateTask(
-    taskId: string,
-    userId: string,
-    data: UpdateTaskBody,
-  ): Promise<Task> {
+  async updateTask(taskId: string, userId: string, data: UpdateTaskBody): Promise<Task> {
     const task = await taskRepository.findById(taskId);
 
     if (!task) {

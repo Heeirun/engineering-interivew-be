@@ -10,5 +10,7 @@ export default defineConfig({
       exclude: ['node_modules/', 'dist/', 'tests/', '**/*.config.*'],
     },
     testTimeout: 10000,
+    // Run integration tests sequentially to avoid database conflicts
+    fileParallelism: false,
   },
 });
